@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circulation</title>
+  <link rel="icon" type="image/png" href="assets/titleicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stage">
+    <!-- p5.js Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Top Image -->
+    <img src="assets/top-image.png" alt="Top Image" class="top-image">
+
+    <!-- Buttons -->
+    <button id="left-btn" class="action-btn left-btn">
+      <img src="assets/Button.png" alt="Left Button">
+    </button>
+    <button id="right-btn" class="action-btn right-btn">
+      <img src="assets/Button.png" alt="Right Button">
+    </button>
+  </div>
+
+  <audio id="bg-music" src="assets/Background music.mp3" autoplay loop></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

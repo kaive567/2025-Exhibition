@@ -1,0 +1,94 @@
+body {
+  background-color: #0b0b0b;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;  /* canvas 크기랑 맞추거나, 여유 있게 지정 */
+  height: 400px;
+}
+
+/* Canvas */
+#canvas-container {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  width: 750px;
+  height: 445px;
+  z-index: 1; /* 가장 뒤 */
+}
+
+/* Top Image */
+.top-image {
+  position: absolute;
+  top: -70px; /* 캔버스보다 조금 위로 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* 캔버스 위 */
+  pointer-events: none;
+}
+
+/* Buttons */
+.action-btn {
+  z-index: 10;
+  position: absolute;
+  bottom: -87px;           /* 원래 쓰던 위치 값 유지 */
+  width: 100px;
+  height: 100px;           /* 클릭 영역 = PNG 크기 */
+  padding: 0;
+  border: none;
+  background: none;        /* 🔴 반드시: 배경/그라데이션 제거 */
+  cursor: pointer;
+  display: grid;           /* 중앙정렬 */
+  place-items: center;
+}
+
+/* 버튼 안의 PNG 설정 */
+.action-btn img {
+  width: 200%;
+  height: 200%;
+  object-fit: contain;
+  transition: transform 120ms ease, filter 120ms ease;
+  filter: drop-shadow(0 6px 10px rgb(0, 0, 0)); /* 기본 그림자 */
+}
+
+/* 클릭(눌림) 연출: PNG만 살짝 작아지고 아래로 */
+.action-btn:active img {
+  transform: scale(0.94) translateY(4px) /* 오른쪽도 반전 유지됨 */;
+  filter:
+    drop-shadow(0 0 16px rgba(255,255,255,0.6)) /* 흰 Glow */
+    drop-shadow(0 2px 6px rgba(0,0,0,0.3));     /* 바닥 그림자 */
+}
+
+/* 오른쪽 버튼은 PNG만 좌우 반전 */
+.right-btn img {
+  transform: scaleX(-1);
+}
+
+/* 오른쪽 버튼 눌림 상태도 반전 유지 */
+.right-btn:active img {
+  transform: scaleX(-1) scale(0.94) translateY(4px);
+  filter:
+    drop-shadow(0 0 16px rgba(255,255,255,0.6))
+    drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+
+/* 위치 조정만 따로 처리 */
+.left-btn {
+  right: 50%;
+  margin-right: 200px; /* 대신 margin으로 왼쪽 이동 */
+}
+
+.right-btn {
+  left: 50%;
+  margin-left: 200px; /* 대신 margin으로 오른쪽 이동 */
+}
