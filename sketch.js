@@ -12,6 +12,7 @@ let decorations = [];
 const decoCount = 50; // 원하는 개수로 조절
 
 let clickAudio;   // HTMLAudioElement
+let bgm;
 
 function preload() {
   backgroundVideo = createVideo("assets/Background.mp4");
@@ -24,6 +25,9 @@ function preload() {
   youngJellyVideo.hide();
 
   obstacleImage = loadImage("assets/Obstacle.png");
+
+  soundFormats('mp3', 'ogg');
+  bgm = loadSound('assets/backgroundmusic.mp3');
   
   const decoNames = ["decoration1.png", "decoration2.png", "decoration3.png", "decoration4.png", "decoration5.png"];
   decoImages = decoNames.map((name) =>
@@ -38,6 +42,8 @@ function setup() {
   const canvas = createCanvas(650, 400);
   canvas.parent("canvas-container");
   noStroke();
+
+  bgm.setVolume(0.4);
 
   // 비디오 자동재생 가드 + 루프 (한 번만)
   for (const v of [backgroundVideo, adultJellyVideo, youngJellyVideo]) {
@@ -209,6 +215,24 @@ function draw() {
     image(obstacleImage, obs.x, obs.y, obs.w, obs.h);
   }
 }
+
+// 첫 사용자 액션에서 재생
+function startBGM() {
+  if (bgm && !bgm.isPlaying()) {
+    bgm.loop();
+  }
+}
+
+// 예: 시작 버튼 클릭 시 호출
+document.getElementById('left-btn').addEventListener('click', () => {
+  startBGM();
+  onClickButton();
+});
+
+document.getElementById('right-btn').addEventListener('click', () => {
+  startBGM();
+  onClickButton();
+});
 
 // y축 그라데이션 함수
 function setGradient(x, y, w, h, c1, c2) {
